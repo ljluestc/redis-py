@@ -1662,6 +1662,11 @@ class TestRedisCommands:
         assert await r.sismember("a", "3")
         assert not await r.sismember("a", "4")
 
+    async def test_sismember_with_int_name(self, r: redis.Redis):
+        await r.sadd(55, "Spark")
+        assert await r.sismember(55, "Spark")
+        assert not await r.sismember(55, "Flame")
+
     async def test_smembers(self, r: redis.Redis):
         await r.sadd("a", "1", "2", "3")
         assert set(await r.smembers("a")) == {b"1", b"2", b"3"}

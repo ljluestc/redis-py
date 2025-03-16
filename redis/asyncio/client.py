@@ -46,7 +46,7 @@ from redis.client import (
     CaseInsensitiveDict,
 )
 from redis.commands import (
-    AsyncCoreCommands,
+    AsyncCoreCommands,  # Ensure this import is present
     AsyncRedisModuleCommands,
     AsyncSentinelCommands,
     list_or_args,
@@ -105,7 +105,10 @@ ResponseCallbackT = Union[ResponseCallbackProtocol, AsyncResponseCallbackProtoco
 
 
 class Redis(
-    AbstractRedis, AsyncRedisModuleCommands, AsyncCoreCommands, AsyncSentinelCommands
+    AbstractRedis,
+    AsyncRedisModuleCommands,
+    AsyncCoreCommands,
+    AsyncSentinelCommands,
 ):
     """
     Implementation of the Redis protocol.
